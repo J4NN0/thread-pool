@@ -8,17 +8,17 @@ In this way Item is a thread safe class and more threads (that will do some stuf
 # Class Item
 *Variables*
 - Boolean 'valid'
-  1. The constructor of the class set this variable as true
-  2. The destructor (or the method invalidate()) set this variable as false
-  3. This is usefull to understand if the class is still valid and so if the threads that are waiting to do some stuff can terminate or not
+  - The constructor of the class set this variable as true
+  - The destructor (or the method invalidate()) set this variable as false
+  - This is usefull to understand if the class is still valid and so if the threads that are waiting to do some stuff can terminate or not
 - Mutex
-  1. Mutual exclusion variable able to prevent race condition
-  2. It is the requirement that one thread of execution never enter its critical section at the same time that another concurrent thread of execution enters its own critical section
+  - Mutual exclusion variable able to prevent race condition
+  - It is the requirement that one thread of execution never enter its critical section at the same time that another concurrent thread of execution enters its own critical section
 - Condition variable
-  1. It allows threads to have both mutual exclusion and the ability to wait (block) for a certain condition to become true
+  - It allows threads to have both mutual exclusion and the ability to wait (block) for a certain condition to become true
 - Priority queue
-  1. This is the true data that you access
-  2. You can modify this data type and put another data type
+  - This is the true data that you access
+  - You can modify this data type and put another data type
   
 *Methods*
 - public void push(int var)
@@ -58,12 +58,12 @@ In this way Item is a thread safe class and more threads (that will do some stuf
 *Variables*
 - A type Item
 - nthreads
-  1. An int value that through thread::hardware_concurrency() will know the maximum number of concurrent threads that are supported
+  - An int value that through thread::hardware_concurrency() will know the maximum number of concurrent threads that are supported
 - Vector of threads
-  1. Usefull to remember all generated threads
-  2. Used also to terminate all threads
+  - Usefull to remember all generated threads
+  - Used also to terminate all threads
 - Once flag
-  1. It allows to call a function only once
+  - It allows to call a function only once
   
 *Methods*
 - public void startup(void)
