@@ -25,7 +25,7 @@ In this way Item is a thread safe class and more threads (that will do some stuf
   1. Method requires a var (of type int but you can modify it as you want) that have to be pushed in the queue
   2. A lock guard is defined
                 
-         lock_guard<mutex> lck(mtx)
+         lock_guard<mutex> lck(mtx);
          
      In this way a thread access to the critial section only when the lock is released by another one 
   3. A check of valid is done
@@ -34,7 +34,7 @@ In this way Item is a thread safe class and more threads (that will do some stuf
 - public bool pop(int &var)
   1. A unique lock is defined
   
-         unique_lock<mutex> lck(mtx)
+         unique_lock<mutex> lck(mtx);
          
      Unlike lock guard the unique lock can be released when you want. Thanks to this if the queue is empty the thread can release the lock (in this way it allows other thread to acces to the data structure) and wait for a condition: i.e. a value is pushed in the priority queue
   2. Thread check if the queue is empty (and valid at the same time) 
@@ -71,7 +71,7 @@ In this way Item is a thread safe class and more threads (that will do some stuf
   2. This method have to be called only once otherwise an exception is raised
   3. It generated 'nthreads' and it associates to each thread the funciton worker()
   
-         threads.emplace_back(thread{&ThreadPool::worker, this})
+         threads.emplace_back(thread{&ThreadPool::worker, this});
 
 - public void shutdown(void)
   1. It have to be called and the end of the program
