@@ -9,7 +9,7 @@ int main()
 
     tp.startup();
 
-    //or also more thread can do this stuff, this is an easy example
+    //this is an easy example
     tp.post_task(2);
 
     tp.shutdown();
