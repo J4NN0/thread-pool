@@ -6,7 +6,7 @@ More threads access at the same data structure (a class named Item in this examp
 In this way Item is a thread safe class and more threads (that will do some stuff) access to it.
 
 # Class Item
-*Variables*
+#### Variables
 - Boolean 'valid'
   - The constructor of the class set this variable as true
   - The destructor (or the method invalidate()) set this variable as false
@@ -20,7 +20,7 @@ In this way Item is a thread safe class and more threads (that will do some stuf
   - This is the true data that you access
   - You can modify this data type and put another data type
   
-*Methods*
+#### Methods
 - public void push(int var)
   1. Method requires a var (of type int but you can modify it as you want) that have to be pushed in the queue
   2. A lock guard is defined
@@ -55,7 +55,7 @@ In this way Item is a thread safe class and more threads (that will do some stuf
      If threads are in cv.wait(...) the will wake up and will see that the class is invalid and will terminate
      
 # Class ThreadPool
-*Variables*
+#### Variables
 - A type Item
 - nthreads
   - An int value that through thread::hardware_concurrency() will know the maximum number of concurrent threads that are supported
@@ -65,7 +65,7 @@ In this way Item is a thread safe class and more threads (that will do some stuf
 - Once flag
   - It allows to call a function only once
   
-*Methods*
+#### Methods
 - public void startup(void)
   1. It have to be called and the start of the program
   2. This method have to be called only once otherwise an exception is raised
