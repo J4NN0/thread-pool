@@ -60,7 +60,7 @@ public void invalidate(void)
      ```cpp   
      cv.notify_all();
      ```
-     If threads are in ```cpp cv.wait(...)``` the will wake up and will see that the class is invalid and will terminate
+     If threads are in ```cv.wait(...)``` the will wake up and will see that the class is invalid and will terminate
      
 # Class ThreadPool
 #### Variables
