@@ -21,7 +21,9 @@ In this way Item is a thread safe class and more threads (that will do some stuf
   - You can modify this data type and put another data type
   
 #### Methods
-- ```cpp public void push(int var)```
+- ```cpp
+  public void push(int var) 
+  ``` 
   1. Method requires a var (of type int but you can modify it as you want) that have to be pushed in the queue
   2. A lock guard is defined
      ```cpp   
