@@ -21,38 +21,38 @@ In this way Item is a thread safe class and more threads (that will do some stuf
   - You can modify this data type and put another data type
   
 #### Methods
-- public void push(int var)
+- ```cpp public void push(int var)```
   1. Method requires a var (of type int but you can modify it as you want) that have to be pushed in the queue
   2. A lock guard is defined
-                
-         lock_guard<mutex> lck(mtx);
-         
+     ```cpp   
+     lock_guard<mutex> lck(mtx);
+     ```
      In this way a thread access to the critial section only when the lock is released by another one 
   3. A check of valid is done
   4. The value is pushed on the priority queue
   5. Notify through condition variable that a value is inserted in the queue and so if there are at least one thread waiting for a value it can do its stuff
-- public bool pop(int &var)
+- ```cpp public bool pop(int &var)```
   1. A unique lock is defined
-  
-         unique_lock<mutex> lck(mtx);
-         
+     ```cpp   
+       unique_lock<mutex> lck(mtx);
+      ```      
      Unlike lock guard the unique lock can be released when you want. Thanks to this if the queue is empty the thread can release the lock (in this way it allows other thread to acces to the data structure) and wait for a condition: i.e. a value is pushed in the priority queue
   2. Thread check if the queue is empty (and valid at the same time) 
-     
-          cv.wait(lck, [this](){return !(valid && pq.empty());});
-          
+     ```cpp   
+      cv.wait(lck, [this](){return !(valid && pq.empty());});
+      ```      
      When the condition becomes true the thread will take the lock and go on
   3. Pop the value from the top of the proprity queue
   4. 'var' will contain the poped variable and the method will return true
   5. If the method return false means that the class is not valid anymore
-- public void invalidate(void)
+- ```cpp public void invalidate(void)```
   1. A lock guard is defined
   2. Queue is invalidate
   3. Notify all thread of the changes 
-  
-         cv.notify_all();
-         
-     If threads are in cv.wait(...) the will wake up and will see that the class is invalid and will terminate
+     ```cpp   
+     cv.notify_all();
+     ```
+     If threads are in ```cpp cv.wait(...)``` the will wake up and will see that the class is invalid and will terminate
      
 # Class ThreadPool
 #### Variables
@@ -66,20 +66,20 @@ In this way Item is a thread safe class and more threads (that will do some stuf
   - It allows to call a function only once
   
 #### Methods
-- public void startup(void)
+-  ```cpp public void startup(void)```
   1. It have to be called and the start of the program
   2. This method have to be called only once otherwise an exception is raised
   3. It generated 'nthreads' and it associates to each thread the funciton worker()
-  
-         threads.emplace_back(thread{&ThreadPool::worker, this});
-
-- public void shutdown(void)
+     ```cpp   
+     threads.emplace_back(thread{&ThreadPool::worker, this});
+     ```
+-  ```cpp public void shutdown(void)```
   1. It have to be called and the end of the program
   2. This method have to be called only once otherwise an exception is raised
   3. It will invalidate the class and terminate all threads that are generated earlier
-- private void worker(void) 
+- ```cpp private void worker(void)```
   1. While the queue is valid the method will go on
   2. A value is popped from the priority queue
   3. Given this value the method do some stuff (in this case only a cout)
-- public void post_task(int var)
+- ```cpp public void post_task(int var)```
   1. Method requires a var (of type int but you can modify it as you want) you want to push on the queue
